@@ -18,6 +18,9 @@
                 type="text"
                 formControlName="nombre"
             />
+            <span *ngIf="formLibreria.get('nombre').errors?.required" [ngStyle]="{'color':'blue','background-color':'#ff0','text-align':'center'}">
+                ** El campo es requerido **
+            </span>
             </div>
         </div>
 
@@ -29,6 +32,9 @@
                 type="text"
                 formControlName="direccion"
             />
+            <span *ngIf="formLibreria.get('direccion').errors?.required" [ngStyle]="{'color':'blue','background-color':'#ff0','text-align':'center'}">
+                ** El campo es requerido **
+            </span>
             </div>
         </div>
 
@@ -42,8 +48,11 @@
                 required minlength="8"
                 required maxlength="8" 
             />
-            <span *ngIf="formLibreria.get('telefono').errors?.required" [ngStyle]="{'color':'red','background-color':'#ff0','text-align':'center'}">
-                el campo es requerido
+            <span *ngIf="formLibreria.get('telefono').errors?.required" [ngStyle]="{'color':'blue','background-color':'#ff0','text-align':'center'}">
+                ** El campo es requerido **
+            </span>
+            <span *ngIf="formLibreria.get('telefono').errors?.pattern" [ngStyle]="{'color':'red','background-color':'','text-align':'center'}">
+                **¡Solo numeros!**
             </span>
             </div>
         </div>

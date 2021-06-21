@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Libro, genero} from '../../modelos/libro';
-import {LibroService} from '../../servicios/libro.service';
-import {ActivatedRoute,Router} from '@angular/router'
+//import {LibroService} from '../../servicios/libro.service';
+import {ActivatedRoute,Router} from '@angular/router';
+import { ListadoLibrosService } from '../../servicios/listado-libros.service';
 
 @Component({
   selector: 'app-formulario-libro',
@@ -14,18 +15,20 @@ export class FormularioLibroComponent implements OnInit {
   libroId:number;
   tit:string;
   generos:genero[];
+  title = 'proxy'
 
   constructor(private fb: FormBuilder,
-              private LibroSrv:LibroService,
+              //private LibroSrv:LibroService,
               private activatedRoute:ActivatedRoute,
-              private router:Router,){ }
+              private router:Router,
+              private servicioListadoLibro: ListadoLibrosService){ }
 
   ngOnInit() {
     this.formLibro =this.fb.group({
         titulo:['', [Validators.required]],
-        autor:'', 
-        editorial:'',
-        genero:'',
+        autor:['', [Validators.required]], 
+        editorial:['', [Validators.required]],
+        genero:['', [Validators.required]],
       });
 
       this.generos=[
@@ -48,9 +51,9 @@ export class FormularioLibroComponent implements OnInit {
         return;
       }
       else{
-        debugger
         //es numerico
-        var libro = this.LibroSrv.Buscar(this.libroId);
+        var libro = this.servicioListadoLibro.Buscar(this.libroId).subscribe(
+          libro => {
         this.tit="Modificar los datos del libro: " + libro.titulo + "" + libro.autor;
         //llenar el campo formulario
         this.formLibro.patchValue({
@@ -58,28 +61,40 @@ export class FormularioLibroComponent implements OnInit {
           autor:libro.autor,
           editorial:libro.editorial,
           genero:libro.genero,
-        });
+          });
+        }
+      )
         
-      }
     }
-  );
+  }
+    );
+  
 }
 
-  GuardarLibro() {
+    GuardarLibro() {
     
-    let libro: Libro=Object.assign({}, this.formLibro.value);
-    libro.id= +this.libroId;
-      if(libro.id>0){
-        //editar
-        this.LibroSrv.Editar(libro);
+      let libro: Libro=Object.assign({}, this.formLibro.value);
+      libro.id= +this.libroId;
+        if(libro.id>0){
+          //editar
+          console.log('editar');
+          this.servicioListadoLibro.Editar(libro).subscribe(
+            
+            );
+          this.router.navigate(["/libro"])
+        }
+        else{
+          //nuevo
+          this.servicioListadoLibro.Crear(this.formLibro.value).subscribe(
+            data => {
+          console.log('guardar');
+  
+              this.router.navigate(["/libro"])
+            },
+            err => console.log(err)
+          );
+        }
       }
-      else{
-        //nuevo
-        libro.id = this.LibroSrv.CrearId()
-        this.LibroSrv.Crear(libro);
-      }
-      this.router.navigate(["/libro"])
-    }
   
   }
 

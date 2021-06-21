@@ -16,6 +16,7 @@ import { GrillalibreriaComponent } from './libreria/grillalibreria.component';
 import { LibreriacardComponent } from './libreria/libreriacard.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -6,7 +6,6 @@ export interface Libreria {
     telefono:number,
     horario:string,
     descuento:boolean;
- 
     
 }
 

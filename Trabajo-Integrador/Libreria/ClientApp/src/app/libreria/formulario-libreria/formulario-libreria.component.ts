@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators} from '@angular/forms';
 import { Libreria, horario } from '../../modelos/libreria';
 import { ActivatedRoute, Router } from '@angular/router';
 // import { LibreriaService } from '../../servicios/libreria.service';
@@ -29,10 +29,10 @@ export class FormularioLibreriaComponent implements OnInit {
   ngOnInit() {
 
     this.formLibreria = this.fb.group({
-      nombre: '',
-      direccion: '',
-      telefono: '',
-      horario: '',
+      nombre: ['', [Validators.required]],
+      direccion: ['', [Validators.required]],
+      telefono: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      horario: ['', [Validators.required]],
     });
 
     this.horarios = [
@@ -68,28 +68,30 @@ export class FormularioLibreriaComponent implements OnInit {
     );
   }
 
-  // this.formLibreria.value
-  GuardarFormulario(libreria: Libreria) {
-    this.servicioListado.Crear(this.formLibreria.value).subscribe(
-      data => {
-        this.router.navigate(["/libreria"])
-      },
-      err => console.log(err)
-    );
-  }
-
-  ModificarFormulario(libreria: Libreria) {
-    this.servicioListado.Editar(this.formLibreria.value).subscribe(
-      data => {
-        libreria.id= +this.libreriaId;
+  GuardarFormulario() {
+    
+    let libreria: Libreria=Object.assign({}, this.formLibreria.value);
+    libreria.id= +this.libreriaId;
       if(libreria.id>0){
-        this.router.navigate(["/libreria"])}
-      },
-      err => console.log(err)
-    );
+        //editar
+        console.log('editar');
+        this.servicioListado.Editar(libreria).subscribe(
+          
+          );
+        this.router.navigate(["/libreria"])
+      }
+      else{
+        //nuevo
+        this.servicioListado.Crear(this.formLibreria.value).subscribe(
+          data => {
+        console.log('guardar');
 
+            this.router.navigate(["/libreria"])
+          },
+          err => console.log(err)
+        );
+      }
+    }
   }
 
-
-}
 

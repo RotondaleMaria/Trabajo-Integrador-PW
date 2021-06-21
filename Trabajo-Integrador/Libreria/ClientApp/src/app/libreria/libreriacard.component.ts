@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { Libreria } from '../modelos/libreria';
+import { ListadoService } from '../servicios/listado.service'
 
 @Component({
   selector: 'app-libreriacard',

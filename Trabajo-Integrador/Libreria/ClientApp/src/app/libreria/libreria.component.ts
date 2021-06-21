@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Libreria } from '../modelos/libreria';
 // import { LibreriaService } from '../servicios/libreria.service';
-import { ListadoService } from '../servicios/listado.service'
+import { ListadoService } from '../servicios/listado.service';
+import { FormBuilder, FormGroup , Validators} from '@angular/forms';
+
 
 @Component({
   selector: 'app-libreria',
@@ -16,14 +18,15 @@ export class LibreriaComponent implements OnInit {
   title = 'proxy'
 
 
-  constructor( private servicioListado: ListadoService) { }
+  constructor( private servicioListado: ListadoService,
+                ) { }
 
   ngOnInit() {
 
     this.CargarListado()
 
   }
- 
+
   CargarListado() {
 
     this.servicioListado.MostrarTodos().subscribe(
@@ -43,8 +46,6 @@ export class LibreriaComponent implements OnInit {
     );
   }
 
-
-
   BuscarLibreria() {
     if(this.campobuscado != null && this.campobuscado != "" ){
       this.servicioListado.BuscarPorNombre(this.campobuscado).subscribe(
@@ -59,20 +60,8 @@ export class LibreriaComponent implements OnInit {
     
   }
 
-  // verificarEstado(libreriaId: number) {
-  //   var libreria = this.servicioListado.Buscar(libreriaId).subscribe(
-  //     dato=>{
-  //          if (libreria.descuento) {
-  //     alert("La libreria tiene descuentos");
-  //   }
-  //   else {
-  //     alert("La libreria no tiene descuentos")
-  //   }
-  //     }
-  //   )
-  // }
 
-  EstaCerrado(horario: string): void {
+  EstaCerrado(horario: string): string {
 
     var apertura: number = parseInt((horario.split('a')[0]).trim());
     var cierre: number = parseInt((horario.split('a')[1]).trim());
@@ -81,9 +70,11 @@ export class LibreriaComponent implements OnInit {
     var horaActual: number = fechayhora.getHours()
 
     if (horaActual >= cierre || horaActual < apertura) {
-      alert('Esta cerrado')
+      // alert('Esta cerrado')
+      return 'Esta cerrado'
+
     } else {
-      alert('Esta abierto')
+      return 'Esta abierto'
     }
   }
 }

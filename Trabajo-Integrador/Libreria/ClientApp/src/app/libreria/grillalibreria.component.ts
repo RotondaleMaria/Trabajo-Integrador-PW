@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Libreria} from '../modelos/libreria';
 import {LibreriaService} from '../servicios/libreria.service';
+import { ListadoService } from '../servicios/listado.service'
 
 
 @Component({
@@ -13,11 +14,22 @@ export class GrillalibreriaComponent implements OnInit {
 ListadoLibreria:Libreria[];
 seleccionado:number;
 
-  constructor(private servicioLibreria: LibreriaService) { }
+  constructor(private servicioListado: ListadoService) { }
 
   ngOnInit() {
 
-    this.ListadoLibreria=this.servicioLibreria.MostrarTodos();
+    this.CargarListado()
+
+  }
+
+  CargarListado() {
+
+    this.servicioListado.MostrarTodos().subscribe(
+      data => {
+        this.ListadoLibreria = data
+
+      }
+    );
   }
 
   respuesta(id:number){

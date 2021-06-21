@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Libro} from '../modelos/libro';
-import {LibroService} from '../servicios/libro.service';
+//import {LibroService} from '../servicios/libro.service';
+import { ListadoLibrosService} from '../servicios/listado-libros.service'
 
 @Component({
   selector: 'app-libro',
@@ -9,45 +10,63 @@ import {LibroService} from '../servicios/libro.service';
   
 })
 export class LibroComponent implements OnInit {
+  [x: string]: any;
 
   public ListadoLibro: Libro[];
-  public Titulo:string="Listado de libros";
+  public Titulo:string;
   public campobuscado:string;
   page:number= 1;
+  title = 'proxy'
   
   
 
-  constructor(private servicioLibro:LibroService) { }
+  constructor(private servicioLibro:ListadoLibrosService) { }
 
   ngOnInit() {
-    this.ListadoLibro=this.servicioLibro.MostrarTodos();
+
+    this.CargarListado()
   }
 
-  //muestra el mensaje si tiene o no stock.
-  MostrarMensaje(librId:number){
-    var libro:Libro;
-    libro = this.servicioLibro.Buscar(librId);
-    if(libro.stock){
-      alert("El libro tiene stock");
-    }
-    else{
-      alert("El libro no tiene stock");
-    }
+  
+  CargarListado() {
+
+    this.servicioLibro.MostrarTodos().subscribe(
+      data => {
+        this.ListadoLibro = data
+
+      }
+    );
   }
 
-    BuscarLibro(){
-      this.ListadoLibro=this.servicioLibro.BuscarPorTitulo(this.campobuscado);
-      console.log(this.ListadoLibro);
-    }
 
     BuscarPorTitulo(libroId){
 
     }
 
-    Borrar(libroId:number) {
-    
-      this.servicioLibro.BorrarLibro(libroId);
-      this.ListadoLibro= this.servicioLibro.MostrarTodos();
+    BuscarLibro() {
+      
+      if(this.campobuscado != null && this.campobuscado != "" ){
+        this.servicioLibro.BuscarPorTitulo(this.campobuscado).subscribe(
+          data => {
+            
+            this.ListadoLibro = data
+          },
+          err => console.log(err)
+        );
+      }else{
+        this.CargarListado()
+      }
+      
+    }
+  
+
+    Borrar(libreriaId: number) {
+      this.servicioLibro.Borrar(libreriaId).subscribe(
+        data => {
+          this.CargarListado() 
+        },
+        err => console.log(err)
+      );
     }
 
 }

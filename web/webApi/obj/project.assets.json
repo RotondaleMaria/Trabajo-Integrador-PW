@@ -7319,11 +7319,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\webApi\\webApi.csproj",
+      "projectUniqueName": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\webApi\\webApi.csproj",
       "projectName": "webApi",
-      "projectPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\webApi\\webApi.csproj",
+      "projectPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\webApi\\webApi.csproj",
       "packagesPath": "C:\\Users\\Maria\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\webApi\\obj\\",
+      "outputPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\webApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Maria\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7340,8 +7340,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\Persistencia\\Persistencia.csproj": {
-              "projectPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\Persistencia\\Persistencia.csproj"
+            "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\Persistencia\\Persistencia.csproj": {
+              "projectPath": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\Persistencia\\Persistencia.csproj"
             }
           }
         }

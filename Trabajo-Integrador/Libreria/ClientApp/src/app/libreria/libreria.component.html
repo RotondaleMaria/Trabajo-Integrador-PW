@@ -4,7 +4,7 @@
 <div class="form-group">
     <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" [(ngModel)]="campobuscado"name="campobuscado" type="search" placeholder="Buscar libreria" aria-label="Buscar">
-        <button (click)="BuscarLibreria()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        <button (click)="BuscarLibreria()" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
     </form>
 </div>
 
@@ -13,11 +13,10 @@
     <thead class="table table-striped table-dark">
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
-            <th>Horario</th>
-            <th></th>
+            <th>NOMBRE</th>
+            <th>DIRECCION</th>
+            <th>TELEFONO</th>
+            <th>HORARIO</th>
             <th></th>
             <th></th>
             <th></th>
@@ -31,17 +30,19 @@
             <td>{{libreria.direccion | lowercase}}</td>
             <td>{{libreria.telefono}}</td>
             <td>{{libreria.horario}}</td>
+            <td  [ngStyle]="{'color': EstaCerrado(libreria.horario) == 'Esta abierto'? 'green' : 'red'}">{{EstaCerrado(libreria.horario)}}</td>
             <td>
-                <button class="btn btn-danger"(click)="Borrar(libreria.id)">Borrar</button>
+                <button class="btn btn-danger"(click)="Borrar(libreria.id)"><i class="fas fa-trash-alt"></i> Borrar</button>
             </td>
-            <td>
+            <!-- <td>
                 <button class="btn btn-warning"(click)="verificarEstado(libreria.id)">Descuento</button>
-            </td>
-            <td>
+            </td> -->
+            <!-- <td>
                 <button class="btn btn-info"(click)="EstaCerrado(libreria.horario)">Estado</button>
-            </td>
+            </td> -->
             <td>
-                <button class="btn btn-success"[routerLink]='["/libreria-editar/" + libreria.id]'>Editar</button>
+                <button class="btn btn-success" [routerLink]='["/libreria-editar/" + libreria.id]'><i class="fas fa-edit"></i> Editar</button>
+            
             </td>
         </tr>
     </tbody>

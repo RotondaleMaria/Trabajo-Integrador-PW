@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CgcBes7LD1UyWVWZdxmU5q1kW6+AaSwofBbAod3+ECEFc0GSNMuqzhf0ga83Kdf8ZoQsWBGyR59Hky+cay7YGg==",
+  "dgSpecHash": "uPbq/1APW3sLYs3hvCUU6z6to8fC3WznOvw8bFSR8o1WSTwOPt4ugaFIzdgkLUHfX3jWXDexXVfs8+RrsVUfJw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\webApi\\webApi.csproj",
+  "projectFilePath": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\webApi\\webApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Maria\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Maria\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

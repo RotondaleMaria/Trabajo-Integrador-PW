@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Libreria } from '../modelos/libreria';
 
+
 @Injectable()
 export class ListadoService {
 
@@ -33,6 +34,7 @@ export class ListadoService {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
     return this.http.post<Libreria>('api/Librerias',lib, httpOptions);
+
   }
 
 
@@ -41,17 +43,14 @@ export class ListadoService {
     const headers={ 
       'Accept': 'application/json', 'Content-type':'aplication/json'
     }
-    return this.http.put<Libreria>('/api/librerias',lib, this.httpOptions);
+    return this.http.put<Libreria>('/api/Librerias/' + lib.id, lib, this.httpOptions);
   }
 
-  Descuento(lib:boolean): Observable<boolean>{
-    
-    return this.http.get<boolean>('/api/Librerias/' + lib)
-  }
 
   Borrar(listId:number): Observable<any>{
     console.log(listId);
     return this.http.delete<any>('/api/Librerias/' + listId)
+    
   }
 
   Buscar(libreriaId:number):Observable<Libreria>{

@@ -42,6 +42,22 @@ namespace webApi.Controllers
             return libro;
         }
 
+                // GET: api/Libro/buscar/palabra
+        [HttpGet("buscar/{palabra}")]
+        public async Task<ActionResult<IEnumerable<Libro>>> GetSearchLibros(string palabra)
+        {
+            
+            var libro=  await _context.Libros.Where(x=> x.Titulo.ToLower().Contains(palabra.ToLower())).ToListAsync();
+            
+
+            if (libro == null)
+            {
+                return NotFound();
+            }
+
+            return libro;
+        }
+
         // PUT: api/Libro/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eV+mqCp0IZERB89w+G+zcbGRtiuzTMQ9q9Z7IKZQsqkWawompFb2R38Xr4TN+vKdvS0LtTKPWsPVdB4cToMzbg==",
+  "dgSpecHash": "3ctuTeSiQNDHyefTle+WJY/ziu2Oy5nyOnUCNwbnobQAuB2ofWzd6XrlbYE1s0Ip3IHQLLBNXfjenniuwBfFvg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Maria\\Desktop\\Programacion web\\SEGUNDO PARCIAL\\web\\Persistencia\\Persistencia.csproj",
+  "projectFilePath": "C:\\Users\\Maria\\Desktop\\Programacion web\\Trabajo Integrador PW\\web\\Persistencia\\Persistencia.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Maria\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Maria\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
